@@ -1,0 +1,13 @@
+\newcommand*{\varTitle}{LaTeX Template} 
+\newcommand*{\varAuthor}{Max Mustermann} 
+\newcommand*{\varType}{Assignment im Modul SQF61}
+\newcommand*{\varCourse}{Data Science} 
+\newcommand*{\varSupervisor}{Dr. Super Betreuer} 
+\newcommand*{\varTime}{8 Wochen}
+\newcommand*{\varMatriculation}{10101010} 
+\newcommand*{\varMail}{email@adresse.com}
+\newcommand*{\varStreet}{Musterstraße 42}
+\newcommand*{\varCity}{11880 Musterstadt}
+
+% Einkommentieren und ggf. bearbeiten wenn das BetterBibTeX Plugin aus Zotero genutzt werden soll
+%\newcommand*{\varRemoteBib}{http://127.0.0.1:23119/better-bibtex/export/library?/1/library.biblatex}

@@ -1,0 +1,99 @@
+\documentclass[
+   draft=false,
+   paper=a4,
+   paper=portrait,
+   pagesize=auto,
+   fontsize=12pt,
+   version=last,
+   ngerman,
+   parskip,
+   numbers=noenddot,
+   bibliography=totoc,
+   listof=totoc
+]{scrreprt}
+
+\input{config.tex}
+\input{packages.tex}
+
+\pagenumbering{Roman}
+
+\input{glossary}
+
+\begin{document}
+
+\input{title}
+
+
+\begin{spacing}{1.0} % Verzeichnisse werden mit einzeiligem Abstand gesetzt
+
+\tableofcontents
+\printglossary[type=\acronymtype]
+\printglossary[toctitle=Glossar]
+%\listoffigures 
+%\listoftables
+\listoflistings
+
+\end{spacing} 
+\clearpage
+
+\newcounter{romanPagenumber} 
+\setcounter{romanPagenumber}{\value{page}} % Roemische Seitenanzahl speichern.
+
+\pagenumbering{arabic}
+
+\begin{spacing}{1.5}
+
+\chapter{Einleitung}
+\section{LaTeX Vorlage für Assignments}
+\gls{latex} ist eine Erweiterung des Textverarbeitungssystems \gls{tex}, das von Donald Knuth zwischen 1977 und 1986 entwickelt wurde.\gls{tex} selbst ist eine Beschreibungssprache mit deren Hilfe aus Quellcode bestehend aus Text und Kommandos ein Textdokument generiert wird \autocite{ochsnerTextverarbeitungssystemLaTeX2015}.
+
+\section{Konfiguration}
+Die Datei \textit{config.tex.example} bearbeiten und in \textit{config.tex} umbenennen.
+
+\subsection{Literaturverzeichnis aus Zotero}
+Der Inhalt des Literaturverzeichnisses kann optional direkt aus \gls{zotero} übernommen werden. Das wird möglich durch das \textit{\gls{better-bibtex}} Plugin für Zotero auf der einen Seite und die Nutzung des Befehls \texinline|\addbibresource[location=remote]{http://[...]/library.biblatex}| auf der Anderen. Auf diese Weise muss keine Literaturverzeichnis-Pflege mehr direkt im \gls{latex} Dokument erfolgen.
+
+\section{Einbinden von Elementen}
+\subsection{Grafiken}
+Das Template bindet bereits das Paket \textit{\gls{graphicx}} ein. Mit diesem können Grafiken mit dem Kommando \texinline|\includegraphics{grafik.png}| integriert werden. Um im Inhaltsbereich eine Grafik mit Bildunterschrift und Nummerierung einzubinden, die dann auch im Abbildungsverzeichnis referenziert wird, kann beispielhaft folgender Code verwendet werden.
+\begin{code}
+    \begin{minted}[fontsize=\small,breaklines]{tex}
+\begin{figure}[h]
+    \centering
+    \includegraphics{akad_logo.png}
+    \caption{AKAD Logo}
+\end{figure}
+    \end{minted}
+    \caption{Einbindung von Grafiken}
+\end{code}
+
+\subsection{Quellcode}
+Die Einbindung von Quellcode kann über \textit{\gls{minted}} auf verschiedenen Wegen erfolgen. Zum Einen können ganze Quellcode-Blöcke erstellt und in einem Verzeichnis referenziert werden. Zum Anderen bietet das Paket auch die Möglichkeit, Quellcode in den Textfluss einzubauen.
+
+\begin{code}
+    \begin{minted}[fontsize=\small,breaklines,escapeinside=||]{tex}
+|\textbackslash|begin{code}
+|\textbackslash|begin{minted}[fontsize=\small,breaklines]{html}
+        <b>Hello World</b>
+        |\textbackslash|end{minted}
+    |\textbackslash|caption{Quellcode-Unterschrift}
+|\textbackslash|end{code}      
+    \end{minted}
+    \caption{Einbinden von Quellcode-Blöcken}
+\end{code}
+
+Inline Code kann hingegen wie folgt direkt in den Textfluss integriert werden:
+\begin{code}
+    \begin{minted}[fontsize=\small,breaklines]{tex}
+Das ist ein \mintinline{html}|<b>Inline Code</b>|.
+    \end{minted}
+    \caption{Einbinden von Inline-Quellcode}
+\end{code}
+\end{spacing}
+\clearpage
+
+\pagenumbering{Roman}
+\setcounter{page}{\theromanPagenumber}
+\printbibliography[title=Literaturverzeichnis]
+\clearpage
+\end{document}

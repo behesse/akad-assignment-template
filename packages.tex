@@ -1,0 +1,63 @@
+\usepackage[automark,headsepline]{scrlayer-scrpage}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{newtxtext,newtxmath}
+
+\geometry{a4paper, left=25mm, right=20mm, top=30mm, bottom=30mm}
+\clearpairofpagestyles 			% Seitenstil löschen
+\pagestyle{scrheadings}			% Seitenstil mit Kopf- und Fußleiste
+\cfoot[\pagemark]{\pagemark}	% Seitenzahl mittig in der Fußleiste
+\rohead{\headmark}				% Kolumnentitel rechts in der Kopfleiste
+
+\setkomafont{disposition}{\normalfont\bfseries}
+\renewcommand{\familydefault}{\rmdefault}
+
+
+% Sprache und Kodierung
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+
+
+% Literatur
+\usepackage[style=alphabetic]{biblatex}
+\ifdefined\varRemoteBib
+   \addbibresource[location=remote]{\varRemoteBib}
+\else
+   \addbibresource{literature.bib}
+\fi
+
+
+% Gloassar und Abkürzungsverzeichnis
+\usepackage[toc, acronym, nopostdot]{glossaries}
+\glossarystyle{super}
+
+
+% Abbildungen aller Art
+\usepackage{graphicx}
+
+
+% Quellcode und Verzeichnis
+
+\usepackage[newfloat]{minted} % Einbinden von minted
+\usemintedstyle{bw} % Quellcode Darstellung in schwarz-weiß
+\newmintinline{tex}{breaklines,breakbytokenanywhere,breakbefore=\{,fontsize=\small}
+\usepackage{caption} % Paket zur Konfiguration von Unterschriften
+\usepackage{chngcntr} % Paket zur Konfiguration von Listen-Zählern
+\counterwithout{listing}{chapter} % Listen-Zähler ohne Kapitelangabe
+\counterwithout{figure}{chapter} % Listen-Zähler ohne Kapitelangabe
+\newenvironment{code}{\captionsetup{type=listing}}{} % Erstellung einer Liste für code-Blöcke
+\SetupFloatingEnvironment{listing}{listname={Quellcodeverzeichnis}, name={Quellcode}, fileext=lol} % Definition von Bezeichnungen und Verzeichnis für code-Blöcke
+
+% Verlinkungen
+\usepackage[
+	pdftitle={\varTitle},
+	pdfauthor={\varAuthor},
+	hyperfootnotes=false,
+	colorlinks=true,
+	linkcolor=black,
+	urlcolor=black,
+	citecolor=black
+]{hyperref}
+
+\usepackage{csquotes}
